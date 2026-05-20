@@ -1,0 +1,125 @@
+2026-04-15 19:15:42,980 P400211 INFO FuxiCTR version: 2.3.7
+2026-04-15 19:15:42,980 P400211 INFO Params: {
+    "accumulation_steps": "1",
+    "attention_dropout": "0",
+    "attention_hidden_activations": "Dice",
+    "attention_hidden_units": "[256, 128]",
+    "attention_output_activation": "None",
+    "batch_norm": "False",
+    "batch_size": "8192",
+    "data_format": "parquet",
+    "data_root": "./data/",
+    "dataset_id": "QK_Video_Action",
+    "debug_mode": "False",
+    "din_use_softmax": "False",
+    "distributed": "True",
+    "early_stop_patience": "2",
+    "embedding_dim": "16",
+    "embedding_regularizer": "0",
+    "enable_bf16": "True",
+    "epochs": "1",
+    "eval_steps": "None",
+    "expansion_factor": "2",
+    "feature_cols": "[{'name': 'user_index', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'item_index', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'seq_len', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'user_id', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 4996177}, {'name': 'item_id', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 3753437, 'source': 'item'}, {'name': 'video_category', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 4, 'source': 'item'}, {'name': 'watching_times', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 637}, {'name': 'gender', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 4}, {'name': 'age', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 9}, {'name': 'action', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 17, 'source': 'action'}]",
+    "feature_config": "None",
+    "feature_specs": "None",
+    "global_rank": "64",
+    "gpu": "0",
+    "group_id": "user_index",
+    "item_info": "./data/QK_Video_Action/item_info.parquet",
+    "label_col": "[{'name': 'click', 'dtype': 'float'}, {'name': 'follow', 'dtype': 'float'}, {'name': 'like', 'dtype': 'float'}, {'name': 'share', 'dtype': 'float'}]",
+    "learning_rate": "0.001",
+    "local_rank": "0",
+    "loss": "['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']",
+    "max_len": "100",
+    "metrics": "['logloss', 'AUC', 'gAUC']",
+    "model": "UniMixer",
+    "model_id": "UniMixer_QK_Video_Action",
+    "model_root": "./checkpoints/",
+    "monitor": "{'AUC': 1, 'logloss': 0, 'gAUC': 1}",
+    "monitor_mode": "max",
+    "net_dropout": "0",
+    "net_regularizer": "0",
+    "num_basis": "4",
+    "num_layers": "3",
+    "num_tasks": "4",
+    "num_workers": "2",
+    "optimizer": "adam",
+    "pickle_feature_encoder": "True",
+    "rank": "0",
+    "rebuild_dataset": "False",
+    "save_best_only": "True",
+    "seed": "20262027",
+    "shuffle": "True",
+    "sinkhorn_iter": "5",
+    "task": "binary_classification",
+    "test_data": "./data/QK_Video_Action/test.parquet",
+    "token_dim": "128",
+    "tower_activations": "ReLU",
+    "tower_hidden_units": "[128, 64]",
+    "train_data": "./data/QK_Video_Action/train.parquet",
+    "use_features": "None",
+    "user_info": "./data/QK_Video_Action/user_info.parquet",
+    "valid_data": "./data/QK_Video_Action/valid.parquet",
+    "verbose": "1",
+    "world_size": "2"
+}
+2026-04-15 19:15:42,981 P400211 INFO Set up feature processor...
+2026-04-15 19:15:42,981 P400211 INFO Fit feature processor...
+2026-04-15 19:15:42,981 P400211 INFO Processing column: {'name': 'user_index', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-15 19:15:42,981 P400211 INFO Processing column: {'name': 'item_index', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-15 19:15:42,982 P400211 INFO Processing column: {'name': 'seq_len', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-15 19:15:42,982 P400211 INFO Processing column: {'name': 'user_id', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 4996177}
+2026-04-15 19:15:44,262 P400211 INFO Processing column: {'name': 'item_id', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 3753437, 'source': 'item'}
+2026-04-15 19:15:45,241 P400211 INFO Processing column: {'name': 'video_category', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 4, 'source': 'item'}
+2026-04-15 19:15:45,241 P400211 INFO Processing column: {'name': 'watching_times', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 637}
+2026-04-15 19:15:45,242 P400211 INFO Processing column: {'name': 'gender', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 4}
+2026-04-15 19:15:45,242 P400211 INFO Processing column: {'name': 'age', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 9}
+2026-04-15 19:15:45,242 P400211 INFO Processing column: {'name': 'action', 'active': True, 'dtype': 'str', 'type': 'categorical', 'vocab_size': 17, 'source': 'action'}
+2026-04-15 19:15:45,242 P400211 INFO Set column index...
+2026-04-15 19:15:45,242 P400211 INFO Save feature_map to json: ./data/QK_Video_Action/feature_map.json
+2026-04-15 19:15:45,243 P400211 INFO Pickle feature_encode: ./data/QK_Video_Action/feature_processor.pkl
+2026-04-15 19:15:45,617 P400211 INFO Save feature_vocab to json: ./data/QK_Video_Action/feature_vocab.json
+2026-04-15 19:15:57,287 P400211 INFO Set feature processor done.
+2026-04-15 19:15:57,300 P400211 INFO Load feature_map from json: ./data/QK_Video_Action/feature_map.json
+2026-04-15 19:15:57,300 P400211 INFO Set column index...
+2026-04-15 19:15:57,300 P400211 INFO Feature specs: {
+    "action": "{'source': 'action', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 17}",
+    "age": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 9}",
+    "gender": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "item_id": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 3753437}",
+    "item_index": "{'type': 'meta'}",
+    "seq_len": "{'type': 'meta'}",
+    "user_id": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4996177}",
+    "user_index": "{'type': 'meta'}",
+    "video_category": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "watching_times": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 637}"
+}
+2026-04-15 19:16:00,835 P400211 INFO Total number of parameters: 143423053.
+2026-04-15 19:16:00,835 P400211 INFO Number of embedding parameters: 140004560.
+2026-04-15 19:16:00,835 P400211 INFO Number of dense parameters: 3418493.
+2026-04-15 19:16:00,835 P400211 INFO Loading datasets...
+2026-04-15 19:17:21,242 P400211 INFO Train samples: total/197323659, blocks/1
+2026-04-15 19:17:38,989 P400211 INFO Validation samples: total/25039514, blocks/1
+2026-04-15 19:17:38,989 P400211 INFO Loading train and validation data done.
+2026-04-15 19:17:38,990 P400211 INFO BF16 mixed precision: True
+2026-04-15 19:17:38,990 P400211 INFO Start training: 24087 batches/epoch
+2026-04-15 19:17:38,991 P400211 INFO ************ Epoch=1 start ************
+2026-04-15 21:05:36,091 P400211 INFO Train loss: 0.420959
+2026-04-15 21:05:36,091 P400211 INFO Evaluation @epoch 1 - batch 24087: 
+2026-04-15 21:12:48,726 P400211 INFO [Task: click][Metrics] AUC: 0.922328 - logloss: 0.300331 - gAUC: 0.875100
+2026-04-15 21:13:32,666 P400211 INFO [Task: follow][Metrics] AUC: 0.918759 - logloss: 0.006884 - gAUC: 0.672813
+2026-04-15 21:14:27,188 P400211 INFO [Task: like][Metrics] AUC: 0.947191 - logloss: 0.047519 - gAUC: 0.677437
+2026-04-15 21:15:11,643 P400211 INFO [Task: share][Metrics] AUC: 0.927023 - logloss: 0.007589 - gAUC: 0.811630
+2026-04-15 21:15:14,990 P400211 INFO Save best model: monitor(max)=1.688070
+2026-04-15 21:15:15,779 P400211 INFO ************ Epoch=1 end ************
+2026-04-15 21:15:15,779 P400211 INFO Training finished.
+2026-04-15 21:15:15,779 P400211 INFO Load best model: /mnt/data00/lhh/code/UniRank/checkpoints/QK_Video_Action/UniMixer_QK_Video_Action.model
+2026-04-15 21:15:17,866 P400211 INFO ******** Test evaluation ********
+2026-04-15 21:15:17,866 P400211 INFO Loading datasets...
+2026-04-15 21:15:39,742 P400211 INFO Test samples: total/24289979, blocks/1
+2026-04-15 21:15:39,742 P400211 INFO Loading test data done.
+2026-04-15 21:22:24,041 P400211 INFO [Task: click][Metrics] logloss: 0.250811 - AUC: 0.934547 - gAUC: 0.890403
+2026-04-15 21:23:07,230 P400211 INFO [Task: follow][Metrics] logloss: 0.004959 - AUC: 0.925563 - gAUC: 0.693007
+2026-04-15 21:23:58,166 P400211 INFO [Task: like][Metrics] logloss: 0.036305 - AUC: 0.949896 - gAUC: 0.694770
+2026-04-15 21:24:42,293 P400211 INFO [Task: share][Metrics] logloss: 0.005271 - AUC: 0.936531 - gAUC: 0.834609

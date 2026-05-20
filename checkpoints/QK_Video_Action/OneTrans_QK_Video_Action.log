@@ -1,0 +1,119 @@
+2026-04-22 16:08:24,091 P787950 INFO FuxiCTR version: 2.3.7
+2026-04-22 16:08:24,092 P787950 INFO Params: {
+    "accumulation_steps": "1",
+    "batch_norm": "False",
+    "batch_size": "8192",
+    "data_format": "parquet",
+    "data_root": "./data/",
+    "dataset_id": "QK_Video_Action",
+    "debug_mode": "False",
+    "distributed": "True",
+    "dnn_activations": "ReLU",
+    "early_stop_patience": "2",
+    "embedding_dim": "16",
+    "embedding_regularizer": "0",
+    "enable_bf16": "True",
+    "epochs": "1",
+    "eval_steps": "None",
+    "feature_cols": "[{'name': 'user_index', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'item_index', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'seq_len', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'user_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4996177}, {'name': 'item_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 3753437, 'source': 'item'}, {'name': 'video_category', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4, 'source': 'item'}, {'name': 'watching_times', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 637}, {'name': 'gender', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4}, {'name': 'age', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 9}, {'name': 'action', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 17, 'source': 'action'}]",
+    "feature_config": "None",
+    "feature_specs": "None",
+    "gpu": "0",
+    "group_id": "user_index",
+    "item_info": "./data/QK_Video_Action/item_info.parquet",
+    "label_col": "[{'name': 'click', 'dtype': 'float'}, {'name': 'follow', 'dtype': 'float'}, {'name': 'like', 'dtype': 'float'}, {'name': 'share', 'dtype': 'float'}]",
+    "learning_rate": "0.001",
+    "local_rank": "0",
+    "loss": "['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']",
+    "max_len": "100",
+    "metrics": "['logloss', 'AUC', 'gAUC']",
+    "model": "OneTrans",
+    "model_id": "OneTrans_QK_Video_Action",
+    "model_root": "./checkpoints/",
+    "monitor": "{'AUC': 1, 'logloss': 0, 'gAUC': 1}",
+    "monitor_mode": "max",
+    "net_dropout": "0",
+    "net_regularizer": "0",
+    "num_heads": "2",
+    "num_layers": "3",
+    "num_ns_token": "4",
+    "num_tasks": "4",
+    "num_workers": "2",
+    "optimizer": "adam",
+    "pickle_feature_encoder": "True",
+    "rank": "0",
+    "rebuild_dataset": "False",
+    "save_best_only": "True",
+    "seed": "20262027",
+    "shuffle": "True",
+    "task": "binary_classification",
+    "test_data": "./data/QK_Video_Action/test.parquet",
+    "token_dim": "128",
+    "tower_activations": "ReLU",
+    "tower_hidden_units": "[128, 64]",
+    "train_data": "./data/QK_Video_Action/train.parquet",
+    "use_features": "None",
+    "user_info": "./data/QK_Video_Action/user_info.parquet",
+    "valid_data": "./data/QK_Video_Action/valid.parquet",
+    "verbose": "1",
+    "world_size": "2"
+}
+2026-04-22 16:08:24,093 P787950 INFO Set up feature processor...
+2026-04-22 16:08:24,093 P787950 INFO Fit feature processor...
+2026-04-22 16:08:24,093 P787950 INFO Processing column: {'name': 'user_index', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-22 16:08:24,093 P787950 INFO Processing column: {'name': 'item_index', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-22 16:08:24,093 P787950 INFO Processing column: {'name': 'seq_len', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-22 16:08:24,093 P787950 INFO Processing column: {'name': 'user_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4996177}
+2026-04-22 16:08:25,427 P787950 INFO Processing column: {'name': 'item_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 3753437, 'source': 'item'}
+2026-04-22 16:08:26,451 P787950 INFO Processing column: {'name': 'video_category', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4, 'source': 'item'}
+2026-04-22 16:08:26,452 P787950 INFO Processing column: {'name': 'watching_times', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 637}
+2026-04-22 16:08:26,452 P787950 INFO Processing column: {'name': 'gender', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4}
+2026-04-22 16:08:26,452 P787950 INFO Processing column: {'name': 'age', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 9}
+2026-04-22 16:08:26,452 P787950 INFO Processing column: {'name': 'action', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 17, 'source': 'action'}
+2026-04-22 16:08:26,453 P787950 INFO Set column index...
+2026-04-22 16:08:26,453 P787950 INFO Save feature_map to json: ./data/QK_Video_Action/feature_map.json
+2026-04-22 16:08:26,453 P787950 INFO Pickle feature_encode: ./data/QK_Video_Action/feature_processor.pkl
+2026-04-22 16:08:26,846 P787950 INFO Save feature_vocab to json: ./data/QK_Video_Action/feature_vocab.json
+2026-04-22 16:08:39,554 P787950 INFO Set feature processor done.
+2026-04-22 16:08:39,569 P787950 INFO Load feature_map from json: ./data/QK_Video_Action/feature_map.json
+2026-04-22 16:08:39,570 P787950 INFO Set column index...
+2026-04-22 16:08:39,570 P787950 INFO Feature specs: {
+    "action": "{'source': 'action', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 17}",
+    "age": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 9}",
+    "gender": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "item_id": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 3753437}",
+    "item_index": "{'type': 'meta'}",
+    "seq_len": "{'type': 'meta'}",
+    "user_id": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4996177}",
+    "user_index": "{'type': 'meta'}",
+    "video_category": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "watching_times": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 637}"
+}
+2026-04-22 16:08:43,251 P787950 INFO Total number of parameters: 143710164.
+2026-04-22 16:08:43,251 P787950 INFO Number of embedding parameters: 140004560.
+2026-04-22 16:08:43,251 P787950 INFO Number of dense parameters: 3705604.
+2026-04-22 16:08:43,251 P787950 INFO Loading datasets...
+2026-04-22 16:10:01,539 P787950 INFO Train samples: total/197323659, blocks/1
+2026-04-22 16:10:20,020 P787950 INFO Validation samples: total/25039514, blocks/1
+2026-04-22 16:10:20,020 P787950 INFO Loading train and validation data done.
+2026-04-22 16:10:20,021 P787950 INFO BF16 mixed precision: True
+2026-04-22 16:10:20,021 P787950 INFO Start training: 24087 batches/epoch
+2026-04-22 16:10:20,021 P787950 INFO ************ Epoch=1 start ************
+2026-04-22 18:06:04,058 P787950 INFO Train loss: 0.421835
+2026-04-22 18:06:04,058 P787950 INFO Evaluation @epoch 1 - batch 24087: 
+2026-04-22 18:13:53,914 P787950 INFO [Task: click][Metrics] AUC: 0.924556 - logloss: 0.296360 - gAUC: 0.872917
+2026-04-22 18:14:37,137 P787950 INFO [Task: follow][Metrics] AUC: 0.921442 - logloss: 0.006868 - gAUC: 0.656206
+2026-04-22 18:15:30,401 P787950 INFO [Task: like][Metrics] AUC: 0.948500 - logloss: 0.046978 - gAUC: 0.661515
+2026-04-22 18:16:13,995 P787950 INFO [Task: share][Metrics] AUC: 0.928003 - logloss: 0.007591 - gAUC: 0.793546
+2026-04-22 18:16:17,000 P787950 INFO Save best model: monitor(max)=1.676671
+2026-04-22 18:16:18,907 P787950 INFO ************ Epoch=1 end ************
+2026-04-22 18:16:18,907 P787950 INFO Training finished.
+2026-04-22 18:16:18,907 P787950 INFO Load best model: /mnt/data00/lhh/code/UniRank/checkpoints/QK_Video_Action/OneTrans_QK_Video_Action.model
+2026-04-22 18:16:20,829 P787950 INFO ******** Test evaluation ********
+2026-04-22 18:16:20,829 P787950 INFO Loading datasets...
+2026-04-22 18:16:41,771 P787950 INFO Test samples: total/24289979, blocks/1
+2026-04-22 18:16:41,771 P787950 INFO Loading test data done.
+2026-04-22 18:24:02,421 P787950 INFO [Task: click][Metrics] logloss: 0.246110 - AUC: 0.937158 - gAUC: 0.888519
+2026-04-22 18:24:44,538 P787950 INFO [Task: follow][Metrics] logloss: 0.004959 - AUC: 0.928461 - gAUC: 0.671873
+2026-04-22 18:25:33,798 P787950 INFO [Task: like][Metrics] logloss: 0.035661 - AUC: 0.951626 - gAUC: 0.678270
+2026-04-22 18:26:15,965 P787950 INFO [Task: share][Metrics] logloss: 0.005276 - AUC: 0.937278 - gAUC: 0.818174

@@ -1,0 +1,120 @@
+2026-04-23 18:19:58,352 P1103240 INFO FuxiCTR version: 2.3.7
+2026-04-23 18:19:58,353 P1103240 INFO Params: {
+    "accumulation_steps": "1",
+    "batch_norm": "False",
+    "batch_size": "8192",
+    "data_format": "parquet",
+    "data_root": "./data/",
+    "dataset_id": "QK_Video_Action",
+    "debug_mode": "False",
+    "distributed": "True",
+    "early_stop_patience": "2",
+    "embedding_dim": "16",
+    "embedding_regularizer": "0",
+    "enable_bf16": "True",
+    "epochs": "1",
+    "eval_steps": "None",
+    "feature_cols": "[{'name': 'user_index', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'item_index', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'seq_len', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'user_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4996177}, {'name': 'item_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 3753437, 'source': 'item'}, {'name': 'video_category', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4, 'source': 'item'}, {'name': 'watching_times', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 637}, {'name': 'gender', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4}, {'name': 'age', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 9}, {'name': 'action', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 17, 'source': 'action'}]",
+    "feature_config": "None",
+    "feature_specs": "None",
+    "gpu": "0",
+    "group_id": "user_index",
+    "item_info": "./data/QK_Video_Action/item_info.parquet",
+    "k1": "[32, 32, 16]",
+    "k2": "[20, 10, 10]",
+    "label_col": "[{'name': 'click', 'dtype': 'float'}, {'name': 'follow', 'dtype': 'float'}, {'name': 'like', 'dtype': 'float'}, {'name': 'share', 'dtype': 'float'}]",
+    "learning_rate": "0.001",
+    "local_rank": "0",
+    "loss": "['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']",
+    "max_len": "100",
+    "metrics": "['logloss', 'AUC', 'gAUC']",
+    "model": "UltraHSTU",
+    "model_id": "UltraHSTU_QK_Video_Action",
+    "model_root": "./checkpoints/",
+    "monitor": "{'AUC': 1, 'logloss': 0, 'gAUC': 1}",
+    "monitor_mode": "max",
+    "net_dropout": "0",
+    "net_regularizer": "0",
+    "num_heads": "2",
+    "num_tasks": "4",
+    "num_workers": "2",
+    "optimizer": "adam",
+    "pickle_feature_encoder": "True",
+    "rank": "0",
+    "rebuild_dataset": "False",
+    "save_best_only": "True",
+    "seed": "20262027",
+    "shuffle": "True",
+    "task": "binary_classification",
+    "test_data": "./data/QK_Video_Action/test.parquet",
+    "token_dim": "128",
+    "tower_activations": "ReLU",
+    "tower_hidden_units": "[128, 64]",
+    "train_data": "./data/QK_Video_Action/train.parquet",
+    "truncation_ratio": "0.5",
+    "truncation_start_layer": "2",
+    "use_features": "None",
+    "user_info": "./data/QK_Video_Action/user_info.parquet",
+    "valid_data": "./data/QK_Video_Action/valid.parquet",
+    "verbose": "1",
+    "world_size": "2"
+}
+2026-04-23 18:19:58,354 P1103240 INFO Set up feature processor...
+2026-04-23 18:19:58,354 P1103240 INFO Fit feature processor...
+2026-04-23 18:19:58,354 P1103240 INFO Processing column: {'name': 'user_index', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-23 18:19:58,354 P1103240 INFO Processing column: {'name': 'item_index', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-23 18:19:58,354 P1103240 INFO Processing column: {'name': 'seq_len', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-04-23 18:19:58,354 P1103240 INFO Processing column: {'name': 'user_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4996177}
+2026-04-23 18:19:59,608 P1103240 INFO Processing column: {'name': 'item_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 3753437, 'source': 'item'}
+2026-04-23 18:20:00,599 P1103240 INFO Processing column: {'name': 'video_category', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4, 'source': 'item'}
+2026-04-23 18:20:00,599 P1103240 INFO Processing column: {'name': 'watching_times', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 637}
+2026-04-23 18:20:00,599 P1103240 INFO Processing column: {'name': 'gender', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4}
+2026-04-23 18:20:00,599 P1103240 INFO Processing column: {'name': 'age', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 9}
+2026-04-23 18:20:00,599 P1103240 INFO Processing column: {'name': 'action', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 17, 'source': 'action'}
+2026-04-23 18:20:00,599 P1103240 INFO Set column index...
+2026-04-23 18:20:00,599 P1103240 INFO Save feature_map to json: ./data/QK_Video_Action/feature_map.json
+2026-04-23 18:20:00,600 P1103240 INFO Pickle feature_encode: ./data/QK_Video_Action/feature_processor.pkl
+2026-04-23 18:20:00,993 P1103240 INFO Save feature_vocab to json: ./data/QK_Video_Action/feature_vocab.json
+2026-04-23 18:20:12,429 P1103240 INFO Set feature processor done.
+2026-04-23 18:20:12,451 P1103240 INFO Load feature_map from json: ./data/QK_Video_Action/feature_map.json
+2026-04-23 18:20:12,451 P1103240 INFO Set column index...
+2026-04-23 18:20:12,451 P1103240 INFO Feature specs: {
+    "action": "{'source': 'action', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 17}",
+    "age": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 9}",
+    "gender": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "item_id": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 3753437}",
+    "item_index": "{'type': 'meta'}",
+    "seq_len": "{'type': 'meta'}",
+    "user_id": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4996177}",
+    "user_index": "{'type': 'meta'}",
+    "video_category": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "watching_times": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 637}"
+}
+2026-04-23 18:20:16,043 P1103240 INFO Total number of parameters: 141572068.
+2026-04-23 18:20:16,044 P1103240 INFO Number of embedding parameters: 140004832.
+2026-04-23 18:20:16,044 P1103240 INFO Number of dense parameters: 1567236.
+2026-04-23 18:20:16,044 P1103240 INFO Loading datasets...
+2026-04-23 18:21:18,628 P1103240 INFO Train samples: total/197323659, blocks/1
+2026-04-23 18:21:36,762 P1103240 INFO Validation samples: total/25039514, blocks/1
+2026-04-23 18:21:36,762 P1103240 INFO Loading train and validation data done.
+2026-04-23 18:21:38,386 P1103240 INFO BF16 mixed precision: True
+2026-04-23 18:21:38,386 P1103240 INFO Start training: 24087 batches/epoch
+2026-04-23 18:21:38,387 P1103240 INFO ************ Epoch=1 start ************
+2026-04-23 21:46:30,869 P1103240 INFO Train loss: 0.418599
+2026-04-23 21:46:30,869 P1103240 INFO Evaluation @epoch 1 - batch 24087: 
+2026-04-23 22:03:16,940 P1103240 INFO [Task: click][Metrics] AUC: 0.924452 - logloss: 0.296864 - gAUC: 0.871173
+2026-04-23 22:03:59,905 P1103240 INFO [Task: follow][Metrics] AUC: 0.921312 - logloss: 0.006841 - gAUC: 0.658447
+2026-04-23 22:04:52,508 P1103240 INFO [Task: like][Metrics] AUC: 0.948398 - logloss: 0.047034 - gAUC: 0.658271
+2026-04-23 22:05:35,686 P1103240 INFO [Task: share][Metrics] AUC: 0.927257 - logloss: 0.007595 - gAUC: 0.794919
+2026-04-23 22:05:38,851 P1103240 INFO Save best model: monitor(max)=1.676057
+2026-04-23 22:05:39,602 P1103240 INFO ************ Epoch=1 end ************
+2026-04-23 22:05:39,602 P1103240 INFO Training finished.
+2026-04-23 22:05:39,602 P1103240 INFO Load best model: /mnt/data00/lhh/code/UniRank/checkpoints/QK_Video_Action/UltraHSTU_QK_Video_Action.model
+2026-04-23 22:05:41,367 P1103240 INFO ******** Test evaluation ********
+2026-04-23 22:05:41,367 P1103240 INFO Loading datasets...
+2026-04-23 22:06:02,597 P1103240 INFO Test samples: total/24289979, blocks/1
+2026-04-23 22:06:02,597 P1103240 INFO Loading test data done.
+2026-04-23 22:22:01,852 P1103240 INFO [Task: click][Metrics] logloss: 0.246642 - AUC: 0.937029 - gAUC: 0.887153
+2026-04-23 22:22:43,338 P1103240 INFO [Task: follow][Metrics] logloss: 0.004916 - AUC: 0.927802 - gAUC: 0.677409
+2026-04-23 22:23:32,167 P1103240 INFO [Task: like][Metrics] logloss: 0.035760 - AUC: 0.951353 - gAUC: 0.675854
+2026-04-23 22:24:14,009 P1103240 INFO [Task: share][Metrics] logloss: 0.005287 - AUC: 0.935238 - gAUC: 0.821046

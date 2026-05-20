@@ -1,0 +1,163 @@
+2026-05-07 14:01:41,872 P578658 INFO FuxiCTR version: 2.3.7
+2026-05-07 14:01:41,873 P578658 INFO Params: {
+    "accumulation_steps": "2",
+    "batch_norm": "False",
+    "batch_size": "4096",
+    "block_cache_size": "1",
+    "blocked": "True",
+    "data_format": "parquet",
+    "data_root": "./data/",
+    "dataset_id": "TencentGR_10M_Action",
+    "debug_mode": "False",
+    "distributed": "True",
+    "early_stop_patience": "2",
+    "embedding_dim": "16",
+    "embedding_regularizer": "0",
+    "enable_bf16": "True",
+    "epochs": "1",
+    "eval_steps": "None",
+    "feature_cols": "[{'name': 'user_index', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'item_index', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'seq_len', 'active': True, 'dtype': 'int', 'type': 'meta'}, {'name': 'user_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 7706779}, {'name': 'item_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 17487677, 'source': 'item'}, {'name': '100', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 7, 'source': 'item'}, {'name': '101', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 54, 'source': 'item'}, {'name': '102', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 173464, 'source': 'item'}, {'name': '112', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 31, 'source': 'item'}, {'name': '114', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 34, 'source': 'item'}, {'name': '115', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 989, 'source': 'item'}, {'name': '116', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 21, 'source': 'item'}, {'name': '117', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 559, 'source': 'item'}, {'name': '118', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 1637, 'source': 'item'}, {'name': '119', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4951, 'source': 'item'}, {'name': '120', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4046, 'source': 'item'}, {'name': '121', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 5041301, 'source': 'item'}, {'name': '122', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 2392, 'source': 'item'}, {'name': '103', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 88}, {'name': '104', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 3}, {'name': '105', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 8}, {'name': '109', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4}, {'name': '106', 'active': True, 'dtype': 'int', 'type': 'sequence', 'max_len': 5, 'vocab_size': 15}, {'name': '107', 'active': True, 'dtype': 'int', 'type': 'sequence', 'max_len': 5, 'vocab_size': 20}, {'name': '108', 'active': True, 'dtype': 'int', 'type': 'sequence', 'max_len': 5, 'vocab_size': 5}, {'name': '110', 'active': True, 'dtype': 'int', 'type': 'sequence', 'max_len': 5, 'vocab_size': 3}, {'name': 'day_of_week', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 8}, {'name': 'is_weekend', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 3}, {'name': 'hour', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 25}, {'name': 'action', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4, 'source': 'action'}]",
+    "feature_config": "None",
+    "feature_specs": "None",
+    "gpu": "0",
+    "group_id": "user_index",
+    "label_col": "[{'name': 'is_click', 'dtype': 'float'}, {'name': 'is_conversion', 'dtype': 'float'}]",
+    "learning_rate": "0.001",
+    "local_rank": "0",
+    "loss": "['binary_crossentropy', 'binary_crossentropy']",
+    "max_len": "100",
+    "metrics": "['logloss', 'AUC', 'gAUC']",
+    "model": "TokenFormer",
+    "model_id": "TokenFormer_TencentGR_10M_Action",
+    "model_root": "./checkpoints/",
+    "monitor": "{'AUC': 1, 'logloss': 0, 'gAUC': 1}",
+    "monitor_mode": "max",
+    "net_dropout": "0",
+    "net_regularizer": "0",
+    "num_full_layers": "2",
+    "num_heads": "2",
+    "num_tasks": "2",
+    "num_workers": "2",
+    "optimizer": "adam",
+    "pickle_feature_encoder": "True",
+    "rank": "0",
+    "rebuild_dataset": "False",
+    "save_best_only": "True",
+    "seed": "20262027",
+    "shuffle": "True",
+    "task": "binary_classification",
+    "test_data": "./data/TencentGR_10M_Action_Blocked/test/data",
+    "test_item_info": "./data/TencentGR_10M_Action_Blocked/test/item_info",
+    "test_user_info": "./data/TencentGR_10M_Action_Blocked/test/user_info",
+    "token_dim": "256",
+    "tower_activations": "ReLU",
+    "tower_hidden_units": "[128, 64]",
+    "train_data": "./data/TencentGR_10M_Action_Blocked/train/data",
+    "train_item_info": "./data/TencentGR_10M_Action_Blocked/train/item_info",
+    "train_user_info": "./data/TencentGR_10M_Action_Blocked/train/user_info",
+    "use_features": "None",
+    "valid_data": "./data/TencentGR_10M_Action_Blocked/valid/data",
+    "valid_item_info": "./data/TencentGR_10M_Action_Blocked/valid/item_info",
+    "valid_user_info": "./data/TencentGR_10M_Action_Blocked/valid/user_info",
+    "verbose": "1",
+    "window_size": "[16]",
+    "world_size": "2"
+}
+2026-05-07 14:01:41,874 P578658 INFO Set up feature processor...
+2026-05-07 14:01:41,875 P578658 INFO Fit feature processor...
+2026-05-07 14:01:41,875 P578658 INFO Processing column: {'name': 'user_index', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-05-07 14:01:41,875 P578658 INFO Processing column: {'name': 'item_index', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-05-07 14:01:41,875 P578658 INFO Processing column: {'name': 'seq_len', 'active': True, 'dtype': 'int', 'type': 'meta'}
+2026-05-07 14:01:41,875 P578658 INFO Processing column: {'name': 'user_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 7706779}
+2026-05-07 14:01:43,836 P578658 INFO Processing column: {'name': 'item_id', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 17487677, 'source': 'item'}
+2026-05-07 14:01:48,257 P578658 INFO Processing column: {'name': '100', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 7, 'source': 'item'}
+2026-05-07 14:01:48,257 P578658 INFO Processing column: {'name': '101', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 54, 'source': 'item'}
+2026-05-07 14:01:48,257 P578658 INFO Processing column: {'name': '102', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 173464, 'source': 'item'}
+2026-05-07 14:01:48,299 P578658 INFO Processing column: {'name': '112', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 31, 'source': 'item'}
+2026-05-07 14:01:48,299 P578658 INFO Processing column: {'name': '114', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 34, 'source': 'item'}
+2026-05-07 14:01:48,299 P578658 INFO Processing column: {'name': '115', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 989, 'source': 'item'}
+2026-05-07 14:01:48,299 P578658 INFO Processing column: {'name': '116', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 21, 'source': 'item'}
+2026-05-07 14:01:48,299 P578658 INFO Processing column: {'name': '117', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 559, 'source': 'item'}
+2026-05-07 14:01:48,300 P578658 INFO Processing column: {'name': '118', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 1637, 'source': 'item'}
+2026-05-07 14:01:48,300 P578658 INFO Processing column: {'name': '119', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4951, 'source': 'item'}
+2026-05-07 14:01:48,301 P578658 INFO Processing column: {'name': '120', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4046, 'source': 'item'}
+2026-05-07 14:01:48,302 P578658 INFO Processing column: {'name': '121', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 5041301, 'source': 'item'}
+2026-05-07 14:01:49,573 P578658 INFO Processing column: {'name': '122', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 2392, 'source': 'item'}
+2026-05-07 14:01:49,574 P578658 INFO Processing column: {'name': '103', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 88}
+2026-05-07 14:01:49,574 P578658 INFO Processing column: {'name': '104', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 3}
+2026-05-07 14:01:49,574 P578658 INFO Processing column: {'name': '105', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 8}
+2026-05-07 14:01:49,574 P578658 INFO Processing column: {'name': '109', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4}
+2026-05-07 14:01:49,574 P578658 INFO Processing column: {'name': '106', 'active': True, 'dtype': 'int', 'type': 'sequence', 'max_len': 5, 'vocab_size': 15}
+2026-05-07 14:01:49,574 P578658 INFO Processing column: {'name': '107', 'active': True, 'dtype': 'int', 'type': 'sequence', 'max_len': 5, 'vocab_size': 20}
+2026-05-07 14:01:49,574 P578658 INFO Processing column: {'name': '108', 'active': True, 'dtype': 'int', 'type': 'sequence', 'max_len': 5, 'vocab_size': 5}
+2026-05-07 14:01:49,574 P578658 INFO Processing column: {'name': '110', 'active': True, 'dtype': 'int', 'type': 'sequence', 'max_len': 5, 'vocab_size': 3}
+2026-05-07 14:01:49,575 P578658 INFO Processing column: {'name': 'day_of_week', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 8}
+2026-05-07 14:01:49,575 P578658 INFO Processing column: {'name': 'is_weekend', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 3}
+2026-05-07 14:01:49,575 P578658 INFO Processing column: {'name': 'hour', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 25}
+2026-05-07 14:01:49,575 P578658 INFO Processing column: {'name': 'action', 'active': True, 'dtype': 'int', 'type': 'categorical', 'vocab_size': 4, 'source': 'action'}
+2026-05-07 14:01:49,575 P578658 INFO Set column index...
+2026-05-07 14:01:49,575 P578658 INFO Save feature_map to json: ./data/TencentGR_10M_Action/feature_map.json
+2026-05-07 14:01:49,576 P578658 INFO Pickle feature_encode: ./data/TencentGR_10M_Action/feature_processor.pkl
+2026-05-07 14:01:51,002 P578658 INFO Save feature_vocab to json: ./data/TencentGR_10M_Action/feature_vocab.json
+2026-05-07 14:02:30,569 P578658 INFO Set feature processor done.
+2026-05-07 14:02:30,582 P578658 INFO Load feature_map from json: ./data/TencentGR_10M_Action/feature_map.json
+2026-05-07 14:02:30,582 P578658 INFO Set column index...
+2026-05-07 14:02:30,582 P578658 INFO Feature specs: {
+    "100": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 7}",
+    "101": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 54}",
+    "102": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 173464}",
+    "103": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 88}",
+    "104": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 3}",
+    "105": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 8}",
+    "106": "{'source': '', 'type': 'sequence', 'feature_encoder': 'layers.MaskedAveragePooling()', 'padding_idx': 0, 'max_len': 5, 'vocab_size': 15}",
+    "107": "{'source': '', 'type': 'sequence', 'feature_encoder': 'layers.MaskedAveragePooling()', 'padding_idx': 0, 'max_len': 5, 'vocab_size': 20}",
+    "108": "{'source': '', 'type': 'sequence', 'feature_encoder': 'layers.MaskedAveragePooling()', 'padding_idx': 0, 'max_len': 5, 'vocab_size': 5}",
+    "109": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "110": "{'source': '', 'type': 'sequence', 'feature_encoder': 'layers.MaskedAveragePooling()', 'padding_idx': 0, 'max_len': 5, 'vocab_size': 3}",
+    "112": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 31}",
+    "114": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 34}",
+    "115": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 989}",
+    "116": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 21}",
+    "117": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 559}",
+    "118": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 1637}",
+    "119": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4951}",
+    "120": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4046}",
+    "121": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 5041301}",
+    "122": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 2392}",
+    "action": "{'source': 'action', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 4}",
+    "day_of_week": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 8}",
+    "hour": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 25}",
+    "is_weekend": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 3}",
+    "item_id": "{'source': 'item', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 17487677}",
+    "item_index": "{'type': 'meta'}",
+    "seq_len": "{'type': 'meta'}",
+    "user_id": "{'source': '', 'type': 'categorical', 'padding_idx': 0, 'vocab_size': 7706779}",
+    "user_index": "{'type': 'meta'}"
+}
+2026-05-07 14:02:36,285 P578658 INFO ************ compile start ************
+2026-05-07 14:02:40,666 P578658 INFO Total number of parameters: 490581762.
+2026-05-07 14:02:40,666 P578658 INFO Number of embedding parameters: 486786048.
+2026-05-07 14:02:40,666 P578658 INFO Number of dense parameters: 3795714.
+2026-05-07 14:02:40,666 P578658 INFO Loading datasets...
+2026-05-07 14:02:40,735 P578658 INFO Train samples: total/293061103, blocks/8
+2026-05-07 14:02:40,782 P578658 INFO Validation samples: total/8920801, blocks/4
+2026-05-07 14:02:40,783 P578658 INFO Loading train and validation data done.
+2026-05-07 14:02:40,784 P578658 INFO BF16 mixed precision: True
+2026-05-07 14:02:40,784 P578658 INFO Start training: 71544 local batches/epoch
+2026-05-07 14:02:40,784 P578658 INFO DDP blocked training: True
+2026-05-07 14:02:40,784 P578658 INFO Disable step-wise eval and use epoch-end synchronized eval for DDP + blocked dataloader.
+2026-05-07 14:02:40,784 P578658 INFO ************ Epoch=1 start ************
+2026-05-07 22:52:20,220 P578658 INFO Train loss: 0.282050
+2026-05-07 22:52:20,260 P578658 INFO Evaluation @epoch 1 - batch 71544: 
+2026-05-07 23:02:55,029 P578658 INFO [Task: is_click][Metrics] AUC: 0.774561 - logloss: 0.166519 - gAUC: 0.711781
+2026-05-07 23:03:12,438 P578658 INFO [Task: is_conversion][Metrics] AUC: 0.832275 - logloss: 0.089155 - gAUC: 0.764801
+2026-05-07 23:03:12,854 P578658 INFO Save best model: monitor(max)=1.541709
+2026-05-07 23:03:15,861 P578658 INFO ************ Epoch=1 end ************
+2026-05-07 23:03:15,861 P578658 INFO Training finished.
+2026-05-07 23:03:15,861 P578658 INFO Load best model: /mnt/data00/lhh/code/UniRank/checkpoints/TencentGR_10M_Action/TokenFormer_TencentGR_10M_Action.model
+2026-05-07 23:03:20,943 P578658 INFO ******** Test evaluation ********
+2026-05-07 23:03:20,943 P578658 INFO Loading datasets...
+2026-05-07 23:03:21,000 P578658 INFO Test samples: total/76589704, blocks/4
+2026-05-07 23:03:21,001 P578658 INFO Loading test data done.
+2026-05-08 00:30:39,138 P578658 INFO [Task: is_click][Metrics] logloss: 0.049786 - AUC: 0.794988 - gAUC: 0.732697
+2026-05-08 00:31:43,118 P578658 INFO [Task: is_conversion][Metrics] logloss: 0.023612 - AUC: 0.862007 - gAUC: 0.806910

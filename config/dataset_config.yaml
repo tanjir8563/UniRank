@@ -1,0 +1,134 @@
+QK_Video_Action:
+        data_root: ./data/
+        data_format: parquet
+        train_data: ./data/QK_Video_Action/train.parquet
+        valid_data: ./data/QK_Video_Action/valid.parquet
+        test_data: ./data/QK_Video_Action/test.parquet
+        user_info: ./data/QK_Video_Action/user_info.parquet
+        item_info: ./data/QK_Video_Action/item_info.parquet
+        rebuild_dataset: False
+        feature_cols:
+            - {name: user_index, active: True, dtype: int, type: meta}
+            - {name: item_index, active: True, dtype: int, type: meta}
+            - {name: seq_len, active: True, dtype: int, type: meta}
+            - {name: user_id, active: True, dtype: int, type: categorical, vocab_size: 4996177}
+            - {name: item_id, active: True, dtype: int, type: categorical, vocab_size: 3753437, source: item}
+            - {name: video_category, active: True, dtype: int, type: categorical, vocab_size: 4, source: item}
+            - {name: watching_times, active: True, dtype: int, type: categorical, vocab_size: 637}
+            - {name: gender, active: True, dtype: int, type: categorical, vocab_size: 4}
+            - {name: age, active: True, dtype: int, type: categorical, vocab_size: 9}
+            - {name: action, active: True, dtype: int, type: categorical, vocab_size: 17, source: action}
+        label_col:
+            - {name: click, dtype: float}
+            - {name: follow, dtype: float}
+            - {name: like, dtype: float}
+            - {name: share, dtype: float}
+
+KuaiRand_Video_Action:
+    data_root: ./data/
+    data_format: parquet
+    train_data: ./data/KuaiRand_Video_Action/train.parquet
+    valid_data: ./data/KuaiRand_Video_Action/valid.parquet
+    test_data: ./data/KuaiRand_Video_Action/test.parquet
+    user_info: ./data/KuaiRand_Video_Action/user_info.parquet
+    item_info: ./data/KuaiRand_Video_Action/item_info.parquet
+    rebuild_dataset: False
+    feature_cols:
+        - {name: user_index, active: True, dtype: int, type: meta}
+        - {name: item_index, active: True, dtype: int, type: meta}
+        - {name: seq_len, active: True, dtype: int, type: meta}
+        - {name: user_id, active: True, dtype: int, type: categorical, vocab_size: 27286}
+        - {name: item_id, active: True, dtype: int, type: categorical, vocab_size: 32038726, source: item}
+        - {name: video_type, active: True, dtype: int, type: categorical, vocab_size: 4, source: item}
+        - {name: primary_tag, active: True, dtype: int, type: categorical, vocab_size: 60, source: item}
+        - {name: music_type, active: True, dtype: int, type: categorical, vocab_size: 8, source: item}
+        - {name: duration_bucket, active: True, dtype: int, type: categorical, vocab_size: 8, source: item}
+        - {name: user_active_degree, active: True, dtype: int, type: categorical, vocab_size: 11}
+        - {name: is_lowactive_period, active: True, dtype: int, type: categorical, vocab_size: 3}
+        - {name: is_live_streamer, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: is_video_author, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: follow_user_num_range, active: True, dtype: int, type: categorical, vocab_size: 10}
+        - {name: fans_user_num_range, active: True, dtype: int, type: categorical, vocab_size: 11}
+        - {name: friend_user_num_range, active: True, dtype: int, type: categorical, vocab_size: 9}
+        - {name: register_days_range, active: True, dtype: int, type: categorical, vocab_size: 10}
+        - {name: onehot_feat0, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: onehot_feat1, active: True, dtype: int, type: categorical, vocab_size: 9}
+        - {name: onehot_feat2, active: True, dtype: int, type: categorical, vocab_size: 52}
+        - {name: onehot_feat3, active: True, dtype: int, type: categorical, vocab_size: 1473}
+        - {name: onehot_feat4, active: True, dtype: int, type: categorical, vocab_size: 17}
+        - {name: onehot_feat5, active: True, dtype: int, type: categorical, vocab_size: 36}
+        - {name: onehot_feat6, active: True, dtype: int, type: categorical, vocab_size: 5}
+        - {name: onehot_feat7, active: True, dtype: int, type: categorical, vocab_size: 120}
+        - {name: onehot_feat8, active: True, dtype: int, type: categorical, vocab_size: 456}
+        - {name: onehot_feat9, active: True, dtype: int, type: categorical, vocab_size: 9}
+        - {name: onehot_feat10, active: True, dtype: int, type: categorical, vocab_size: 7}
+        - {name: onehot_feat11, active: True, dtype: int, type: categorical, vocab_size: 7}
+        - {name: onehot_feat12, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: onehot_feat13, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: onehot_feat14, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: onehot_feat15, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: onehot_feat16, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: onehot_feat17, active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: tab, active: True, dtype: int, type: categorical, vocab_size: 16}
+        - {name: day_of_week, active: True, dtype: int, type: categorical, vocab_size: 8}
+        - {name: is_weekend, active: True, dtype: int, type: categorical, vocab_size: 3}
+        - {name: hour, active: True, dtype: int, type: categorical, vocab_size: 25}
+        - {name: action, active: True, dtype: int, type: categorical, vocab_size: 65, source: action}
+    label_col:
+        - {name: is_click, dtype: float}
+        - {name: is_follow, dtype: float }
+        - {name: is_like, dtype: float}
+        - {name: is_comment, dtype: float}
+        - {name: is_forward, dtype: float}
+        - {name: long_view, dtype: float}
+
+
+TencentGR_10M_Action:
+    data_root: ./data/
+    data_format: parquet
+    train_data: ./data/TencentGR_10M_Action_Blocked/train/data
+    valid_data: ./data/TencentGR_10M_Action_Blocked/valid/data
+    test_data: ./data/TencentGR_10M_Action_Blocked/test/data
+    train_user_info: ./data/TencentGR_10M_Action_Blocked/train/user_info
+    train_item_info: ./data/TencentGR_10M_Action_Blocked/train/item_info
+    valid_user_info: ./data/TencentGR_10M_Action_Blocked/valid/user_info
+    valid_item_info: ./data/TencentGR_10M_Action_Blocked/valid/item_info
+    test_user_info: ./data/TencentGR_10M_Action_Blocked/test/user_info
+    test_item_info: ./data/TencentGR_10M_Action_Blocked/test/item_info
+    rebuild_dataset: False
+    blocked: True
+    block_cache_size: 1
+    feature_cols:
+        - {name: user_index, active: True, dtype: int, type: meta}
+        - {name: item_index, active: True, dtype: int, type: meta}
+        - {name: seq_len, active: True, dtype: int, type: meta}
+        - {name: user_id, active: True, dtype: int, type: categorical, vocab_size: 7706779}
+        - {name: item_id, active: True, dtype: int, type: categorical, vocab_size: 17487677, source: item}
+        - {name: '100', active: True, dtype: int, type: categorical, vocab_size: 7, source: item}
+        - {name: '101', active: True, dtype: int, type: categorical, vocab_size: 54, source: item}
+        - {name: '102', active: True, dtype: int, type: categorical, vocab_size: 173464, source: item}
+        - {name: '112', active: True, dtype: int, type: categorical, vocab_size: 31, source: item}
+        - {name: '114', active: True, dtype: int, type: categorical, vocab_size: 34, source: item}
+        - {name: '115', active: True, dtype: int, type: categorical, vocab_size: 989, source: item}
+        - {name: '116', active: True, dtype: int, type: categorical, vocab_size: 21, source: item}
+        - {name: '117', active: True, dtype: int, type: categorical, vocab_size: 559, source: item}
+        - {name: '118', active: True, dtype: int, type: categorical, vocab_size: 1637, source: item}
+        - {name: '119', active: True, dtype: int, type: categorical, vocab_size: 4951, source: item}
+        - {name: '120', active: True, dtype: int, type: categorical, vocab_size: 4046, source: item}
+        - {name: '121', active: True, dtype: int, type: categorical, vocab_size: 5041301, source: item}
+        - {name: '122', active: True, dtype: int, type: categorical, vocab_size: 2392, source: item}
+        - {name: '103', active: True, dtype: int, type: categorical, vocab_size: 88}
+        - {name: '104', active: True, dtype: int, type: categorical, vocab_size: 3}
+        - {name: '105', active: True, dtype: int, type: categorical, vocab_size: 8}
+        - {name: '109', active: True, dtype: int, type: categorical, vocab_size: 4}
+        - {name: '106', active: True, dtype: int, type: sequence, max_len: 5, vocab_size: 15}
+        - {name: '107', active: True, dtype: int, type: sequence, max_len: 5, vocab_size: 20}
+        - {name: '108', active: True, dtype: int, type: sequence, max_len: 5, vocab_size: 5}
+        - {name: '110', active: True, dtype: int, type: sequence, max_len: 5, vocab_size: 3}
+        - {name: day_of_week, active: True, dtype: int, type: categorical, vocab_size: 8}
+        - {name: is_weekend, active: True, dtype: int, type: categorical, vocab_size: 3}
+        - {name: hour, active: True, dtype: int, type: categorical, vocab_size: 25}
+        - {name: action, active: True, dtype: int, type: categorical, vocab_size: 4, source: action}
+    label_col:
+        - {name: is_click, dtype: float}
+        - {name: is_conversion, dtype: float}

@@ -1,0 +1,1595 @@
+Base:
+    model_root: './checkpoints/'
+    num_workers: 2
+    verbose: 1
+    early_stop_patience: 2
+    pickle_feature_encoder: True
+    save_best_only: True
+    eval_steps: null
+    debug_mode: False
+    group_id: user_index
+    use_features: null
+    feature_specs: null
+    feature_config: null
+
+DIN_QK_Video_Action: # This is a config template
+    model: DIN
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    dnn_hidden_units: [400, 400, 400]
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: True
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+DIN_KuaiRand_Video_Action: # This is a config template
+    model: DIN
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    dnn_hidden_units: [400, 400, 400]
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: True
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+
+DIN_TencentGR_10M_Action: # This is a config template
+    model: DIN
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    dnn_hidden_units: [400, 400, 400]
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+RankMixer_KuaiRand_Video_Action: # This is a config template
+    model: RankMixer
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 6
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 256
+    num_ns_token: 4
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+RankMixer_QK_Video_Action: # This is a config template
+    model: RankMixer
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 4
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 128
+    num_ns_token: 4
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+RankMixer_TencentGR_10M_Action: # This is a config template
+    model: RankMixer
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 2
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 256
+    num_basis: 4
+    global_rank: 64
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+UniMixer_KuaiRand_Video_Action: # This is a config template
+    model: UniMixer
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 6
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 256
+    num_basis: 4
+    global_rank: 64
+    sinkhorn_iter: 5
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+UniMixer_QK_Video_Action: # This is a config template
+    model: UniMixer
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 4
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 128
+    num_basis: 4
+    global_rank: 64
+    sinkhorn_iter: 5
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+UniMixer_TencentGR_10M_Action: # This is a config template
+    model: UniMixer
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 2
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-5
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 256
+    num_ns_token: 4
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+OneTrans_KuaiRand_Video_Action: # This is a config template
+    model: OneTrans
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    num_layers: 3
+    num_heads: 2
+    token_dim: 256
+    num_ns_token: 4
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+OneTrans_QK_Video_Action: # This is a config template
+    model: OneTrans
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    num_layers: 3
+    num_heads: 2
+    token_dim: 128
+    num_ns_token: 4
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+OneTrans_TencentGR_10M_Action: # This is a config template
+    model: OneTrans
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    num_layers: 3
+    num_heads: 2
+    token_dim: 256
+    num_ns_token: 4
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+HyFormer_QK_Video_Action: # This is a config template
+    model: HyFormer
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    num_layers: 3
+    num_heads: 2
+    token_dim: 128
+    num_ns_token: 4
+    num_global_token: 4
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+HyFormer_KuaiRand_Video_Action: # This is a config template
+    model: HyFormer
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    num_layers: 3
+    num_heads: 2
+    token_dim: 256
+    num_ns_token: 4
+    num_global_token: 4
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+HyFormer_TencentGR_10M_Action: # This is a config template
+    model: HyFormer
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    num_layers: 3
+    num_heads: 2
+    token_dim: 256
+    num_ns_token: 4
+    num_global_token: 4
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+MixFormer_QK_Video_Action: # This is a config template
+    model: MixFormer
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    num_layers: 3
+    token_dim: 128
+    num_ns_token: 4
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+MixFormer_KuaiRand_Video_Action: # This is a config template
+    model: MixFormer
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 2048
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    num_layers: 3
+    token_dim: 256
+    num_ns_token: 8
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 4
+
+MixFormer_TencentGR_10M_Action: # This is a config template
+    model: MixFormer
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    num_layers: 3
+    token_dim: 128
+    num_ns_token: 8
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+TokenMixer_KuaiRand_Video_Action: # This is a config template
+    model: TokenMixer
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 6
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 256
+    num_global_token: 1
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+TokenMixer_QK_Video_Action: # This is a config template
+    model: TokenMixer
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 4
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 608
+    num_global_token: 1
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+TokenMixer_TencentGR_10M_Action: # This is a config template
+    model: TokenMixer
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 2
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 608
+    num_global_token: 1
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+HiFormer_KuaiRand_Video_Action: # This is a config template
+    model: HiFormer
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 6
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-4
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 2048
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 128
+    num_heads: 2
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 4
+
+HiFormer_QK_Video_Action: # This is a config template
+    model: HiFormer
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 4
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 2048
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 128
+    num_heads: 2
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 4
+
+HiFormer_TencentGR_10M_Action: # This is a config template
+    model: HiFormer
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 2
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 2048
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    token_dim: 128
+    num_heads: 2
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 4
+
+INFNet_QK_Video_Action: # This is a config template
+    model: INFNet
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    num_layers: 3
+    token_dim: 128
+    num_c_hub_token: 8
+    num_t_hub_token: 2
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+INFNet_KuaiRand_Video_Action: # This is a config template
+    model: INFNet
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    num_layers: 3
+    token_dim: 256
+    num_c_hub_token: 8
+    num_t_hub_token: 2
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+INFNet_TencentGR_10M_Action: # This is a config template
+    model: INFNet
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    num_layers: 3
+    token_dim: 256
+    num_c_hub_token: 8
+    num_t_hub_token: 2
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+EST_KuaiRand_Video_Action: # This is a config template
+    model: EST
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    num_layers: 3
+    num_heads: 2
+    token_dim: 256
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+EST_QK_Video_Action: # This is a config template
+    model: EST
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    num_layers: 3
+    num_heads: 2
+    token_dim: 128
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+EST_TencentGR_10M_Action: # This is a config template
+    model: EST
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    num_layers: 3
+    num_heads: 2
+    token_dim: 256
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+LONGER_KuaiRand_Video_Action: # This is a config template
+    model: LONGER
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    num_ns_token: 4
+    num_groups: 4
+    query_size: 10
+    num_layers: 3
+    num_heads: 2
+    token_dim: 256
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+LONGER_QK_Video_Action: # This is a config template
+    model: LONGER
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    num_ns_token: 4
+    num_groups: 4
+    query_size: 10
+    num_layers: 3
+    num_heads: 2
+    token_dim: 128
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+LONGER_TencentGR_10M_Action: # This is a config template
+    model: LONGER
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    num_ns_token: 4
+    num_groups: 4
+    query_size: 10
+    num_layers: 3
+    num_heads: 2
+    token_dim: 256
+    dnn_activations: ReLU
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+Zenith_KuaiRand_Video_Action: # This is a config template
+    model: Zenith
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 6
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    id_dim: 48
+    token_dim: 256
+    num_token: 4
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+Zenith_QK_Video_Action: # This is a config template
+    model: Zenith
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 4
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    id_dim: 48
+    token_dim: 128
+    num_token: 4
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+Zenith_TencentGR_10M_Action: # This is a config template
+    model: Zenith
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    num_tasks: 2
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    num_layers: 3
+    expansion_factor: 2
+    id_dim: 48
+    token_dim: 256
+    num_token: 4
+    tower_hidden_units: [128, 64]
+    tower_activations: ReLU
+    attention_hidden_units: [256, 128]
+    attention_hidden_activations: "Dice"
+    attention_output_activation: null
+    attention_dropout: 0
+    din_use_softmax: False
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+HeMix_QK_Video_Action: # This is a config template
+    model: HeMix
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    num_layers: 3
+    token_dim: 128
+    num_glocal_token: 4
+    num_real_token: 2
+    num_mix_heads: 2
+    low_rank_dim: 16
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    real_seq_len: 20
+    accumulation_steps: 1
+
+HeMix_KuaiRand_Video_Action: # This is a config template
+    model: HeMix
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    num_layers: 3
+    token_dim: 256
+    num_glocal_token: 4
+    num_real_token: 2
+    num_mix_heads: 2
+    low_rank_dim: 16
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    real_seq_len: 20
+    accumulation_steps: 1
+
+HeMix_TencentGR_10M_Action: # This is a config template
+    model: HeMix
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    num_layers: 3
+    token_dim: 256
+    num_glocal_token: 4
+    num_real_token: 2
+    num_mix_heads: 2
+    low_rank_dim: 16
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    real_seq_len: 20
+    accumulation_steps: 2
+
+Alloy_KuaiRand_Video_Action: # This is a config template
+    model: Alloy
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    windows_size: [32, 32, 32]
+    num_user_token: 4
+    num_heads: 2
+    token_dim: 256
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+Alloy_QK_Video_Action: # This is a config template
+    model: Alloy
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    windows_size: [ 32, 32, 32 ]
+    num_user_token: 4
+    num_heads: 2
+    token_dim: 128
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+Alloy_TencentGR_10M_Action: # This is a config template
+    model: Alloy
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    windows_size: [32, 32, 32]
+    num_user_token: 4
+    num_heads: 2
+    token_dim: 256
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+TokenFormer_KuaiRand_Video_Action: # This is a config template
+    model: TokenFormer
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 2048
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    num_full_layers: 2
+    window_size: [16]
+    num_heads: 2
+    token_dim: 256
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 4
+
+TokenFormer_QK_Video_Action: # This is a config template
+    model: TokenFormer
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    num_full_layers: 2
+    window_size: [16]
+    num_heads: 2
+    token_dim: 128
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+TokenFormer_TencentGR_10M_Action: # This is a config template
+    model: TokenFormer
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    num_full_layers: 2
+    window_size: [16]
+    num_heads: 2
+    token_dim: 256
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+SASRec_QK_Video_Action:
+    model: SASRecPretrain
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 0.0005
+    weight_decay: 0.0001
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 512
+    max_len: 100
+    embedding_dim: 16
+    hidden_units: 128
+    num_blocks: 8
+    num_heads: 8
+    dropout_rate: 0.2
+    dnn_activations: ReLU
+    net_dropout: 0.2
+    batch_norm: False
+    epochs: 3
+    shuffle: True
+    seed: 20252026
+    loss_type: infonce_batch
+    temperature: 0.025
+    infonce_max_supervised: 4096
+    eval_vocab_chunk: 65536
+    accumulation_steps: 1
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+
+SORT_QK_Video_Action:
+    model: SORT
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    max_len: 100
+    embedding_dim: 16
+    hidden_units: 128
+    num_blocks: 3
+    num_heads: 8
+    net_dropout: 0
+    local_window_size: 256
+    query_prune_decay: 0.8
+    query_prune_floor: 128
+    moe_hidden_factor: 4
+    num_routed_experts: 4
+    num_shared_experts: 1
+    moe_top_k: 2
+    freeze_item_id_emb: True
+    item_id_key: item_id
+    pretrained_item_checkpoint: /data/STEVEN8868/TAAC-2026/UniRank/checkpoints/QK_Video_Action/SASRec_QK_Video_Action_50.model
+    epochs: 1
+    shuffle: True
+    seed: 20252026
+    accumulation_steps: 1
+    num_tasks: 4
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+
+UltraHSTU_KuaiRand_Video_Action: # This is a config template
+    model: UltraHSTU
+    dataset_id: KuaiRand_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 6
+    truncation_start_layer: 2
+    truncation_ratio: 0.5
+    k1: [32, 32, 16]
+    k2: [20, 20, 10]
+    num_heads: 2
+    token_dim: 128
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
+
+UltraHSTU_QK_Video_Action: # This is a config template
+    model: UltraHSTU
+    dataset_id: QK_Video_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-4
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 4
+    truncation_start_layer: 2
+    truncation_ratio: 0.5
+    k1: [32, 32, 16]
+    k2: [20, 10, 10]
+    num_heads: 1
+    token_dim: 128
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 1
+
+UltraHSTU_TencentGR_10M_Action: # This is a config template
+    model: UltraHSTU
+    dataset_id: TencentGR_10M_Action
+    loss: ['binary_crossentropy', 'binary_crossentropy']
+    metrics: ['logloss', 'AUC', 'gAUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 4096
+    embedding_dim: 16
+    tower_hidden_units: [128, 64]
+    num_tasks: 2
+    truncation_start_layer: 2
+    truncation_ratio: 0.5
+    k1: [ 32, 32, 16 ]
+    k2: [ 20, 20, 10 ]
+    num_heads: 2
+    token_dim: 128
+    tower_activations: ReLU
+    net_dropout: 0
+    batch_norm: False
+    epochs: 1
+    shuffle: True
+    seed: 20262027
+    monitor: {'AUC': 1, 'logloss': 0, 'gAUC': 1}
+    monitor_mode: 'max'
+    max_len: 100
+    accumulation_steps: 2
