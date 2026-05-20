@@ -59,7 +59,7 @@ UniRank/
 |   +-- QK_Video_Action/
 |   +-- KuaiRand_Video_Action/
 |   +-- TencentGR_10M_Action_Blocked/
-+-- fuxictr/                     # Adapted FuxiCTR training, feature, metric, and layer utilities
++-- fuxictr/                     # Training, feature, metric, and layer utilities based on FuxiCTR
 +-- model_zoo/                   # Ranking model implementations
 +-- checkpoints/                 # Saved models and experiment logs
 +-- test/                        # Metric and utility tests
