@@ -1,4 +1,4 @@
-# UniRank
+# UniRank <sub>v0.1.0, work in progress</sub>
 
 **A Ranking Model Benchmark for Unified Sequential Modeling and Feature Interaction**
 
@@ -21,22 +21,17 @@ UniRank addresses these gaps by collecting representative ranking models, unifie
 
 UniRank follows a unified ranking pipeline. Raw user, item, context, and action features are embedded, converted into model-specific tokens, passed through feature interaction or sequence interaction layers, and finally predicted by task-specific towers.
 
-```mermaid
-flowchart LR
-    subgraph Input["Input Features"]
-        U["User Profile"]
-        C["Context Features"]
-        S["User Behavior Sequence"]
-        I["Target Item"]
-        A["Action / Feedback Type"]
-    end
+<p align="center">
+  <img width="900" alt="Traditional New Impression Only Paradigm" src="./assets/figures/new_impression_only_paradigm.svg">
+</p>
 
-    Input --> E["Embedding Layer"]
-    E --> T["Tokenization / Feature Stacking"]
-    T --> M["Unified Interaction Layers<br/>Feature Interaction + Sequential Modeling"]
-    M --> P["Task Towers"]
-    P --> Y["Multi-Feedback Predictions"]
-```
+**Figure 1. Traditional New Impression Only Paradigm.** Most conventional ranking systems train on the latest impressed target item only. Historical positive feedback is used as auxiliary behavior context, usually through target attention, pooling, or aggregation, before being combined with target item, user profile, and context features in a feature interaction layer. This paradigm is efficient, but it treats each target impression as an independent sample and does not fully exploit the step-by-step evolution of user behavior.
+
+<p align="center">
+  <img width="1200" alt="UniRank Auto-Regressive Paradigm" src="./assets/figures/auto_regressive_paradigm.svg">
+</p>
+
+**Figure 2. UniRank Auto-Regressive Paradigm.** UniRank reorganizes user histories as sequential training samples. Each behavior step can be represented with action-aware tokens, target item tokens, and non-sequential feature tokens. Instead of only predicting the latest impression, the model learns from the chronological behavior sequence and supports multi-task prediction at different positions. This design better matches long user histories and enables unified sequence-feature interaction.
 
 Following the paper, UniRank organizes representative unified ranking models into two architectural paradigms:
 
@@ -117,9 +112,13 @@ Additional experimental or auxiliary implementations may also appear in `model_z
 
 ## Benchmark
 
-The table below reports comprehensive benchmarking results with sequence length 100.
+The table below reports preliminary benchmarking results with sequence length 100.
 
-<img width="1548" height="737" alt="UniRank benchmark results" src="https://github.com/user-attachments/assets/73f5c9cb-5a5e-467a-b0a5-f6975f50d180" />
+<p align="center">
+  <img width="1548" alt="Preliminary UniRank benchmark results" src="./assets/figures/preliminary_benchmark_results.png">
+</p>
+
+**Figure 3. Preliminary Benchmark Results.** The benchmark evaluates 15 ranking models on QK-Video, KuaiRand, and TAAC-25 under AUC and gAUC. Results are reported for multiple feedback tasks, including click, follow, like, share, comment, long view, and conversion. Bold values indicate top-performing results for each task-metric pair.
 
 ## Installation
 
