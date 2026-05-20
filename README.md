@@ -112,7 +112,7 @@ Additional experimental or auxiliary implementations may also appear in `model_z
 
 ## Benchmark
 
-The table below reports preliminary benchmarking results with sequence length 100.
+The table below reports the preliminary benchmarking results under a fixed sequence length of 100. For a fair comparison, all models are configured with three layers. The token dimension is set to 128 for QK-Video and 256 for KuaiRand and TAAC-25.
 
 <p align="center">
   <img width="1548" alt="Preliminary UniRank benchmark results" src="./assets/figures/preliminary_benchmark_results.png">
