@@ -38,13 +38,12 @@ flowchart LR
     P --> Y["Multi-Feedback Predictions"]
 ```
 
-The benchmark covers three major modeling paradigms:
+Following the paper, UniRank organizes representative unified ranking models into two architectural paradigms:
 
 | Paradigm | Description | Representative Models |
 |:--|:--|:--|
-| Sequence pooling then feature stacking | Compress the user sequence with target-aware pooling and combine it with non-sequential features. | DIN |
-| Separate sequence and feature interaction | Use dedicated modules for sequence modeling and feature interaction, then fuse their outputs. | HiFormer, LONGER, HeMix |
-| Unified sequence-feature interaction | Place sequence tokens, target tokens, and non-sequential feature tokens into a shared interaction space. | OneTrans, HyFormer, MixFormer, INFNet, EST, Zenith, SORT, TokenFormer, UltraHSTU |
+| Tokenization after Pooling or Aggregation | First pool or aggregate the behavior sequence into compact sequence representations, then tokenize these representations together with non-sequential features for interaction. | HiFormer, RankMixer, Zenith, UniMixer, HeMix |
+| Layer-wise Unified Interaction | Keep sequence tokens and non-sequence tokens inside the interaction layers, allowing behavior tokens, field tokens, and target tokens to exchange information throughout the network. | OneTrans, HyFormer, MixFormer, INFNet, EST, SORT, TokenFormer, LONGER, UltraHSTU |
 
 Design choices in this repository are intentionally practical:
 
