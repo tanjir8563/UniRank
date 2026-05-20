@@ -25,13 +25,13 @@ UniRank follows a unified ranking pipeline. Raw user, item, context, and action 
   <img width="900" alt="Traditional New Impression Only Paradigm" src="./assets/figures/new_impression_only_paradigm.png">
 </p>
 
-**Figure 1. Traditional New Impression Only Paradigm.** Most conventional ranking systems train on the latest impressed target item only. Historical positive feedback is used as auxiliary behavior context, usually through target attention, pooling, or aggregation, before being combined with target item, user profile, and context features in a feature interaction layer. This paradigm is efficient, but it treats each target impression as an independent sample and does not fully exploit the step-by-step evolution of user behavior.
+**Figure 1. Traditional New Impression Only Paradigm.** Most conventional ranking systems train on the latest impressed target item only. Historical positive feedback is used as auxiliary behavior context, usually through target attention, pooling, or aggregation, before being combined with the target item, user profile, and context features in a feature interaction layer. This paradigm is efficient, but it treats each target impression as an independent sample and does not fully exploit the step-by-step evolution of user behavior.
 
 <p align="center">
   <img width="1200" alt="UniRank Auto-Regressive Paradigm" src="./assets/figures/auto_regressive_paradigm.png">
 </p>
 
-**Figure 2. UniRank Auto-Regressive Paradigm.** UniRank reorganizes user histories as sequential training samples. Each behavior step can be represented with action-aware tokens, target item tokens, and non-sequential feature tokens. Instead of only predicting the latest impression, the model learns from the chronological behavior sequence and supports multi-task prediction at different positions. This design better matches long user histories and enables unified sequence-feature interaction.
+**Figure 2. UniRank Auto-Regressive Paradigm.** UniRank reorganizes user histories as sequential training samples. Each behavior step can be represented with action-aware sequential tokens, target item, and non-sequential feature tokens. Instead of only predicting the latest impression, the model learns from the chronological behavior sequence and supports multi-task prediction at different positions. This design better matches long user histories and enables unified sequence-feature interaction.
 
 Following the paper, UniRank organizes representative unified ranking models into two architectural paradigms:
 
