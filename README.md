@@ -37,7 +37,7 @@ Following the paper, UniRank organizes representative unified ranking models int
 
 | Paradigm | Description | Representative Models |
 |:--|:--|:--|
-| Tokenization after Pooling or Aggregation | First pool or aggregate the behavior sequence into compact sequence representations, then tokenize these representations together with non-sequential features for interaction. | HiFormer, RankMixer, Zenith, UniMixer, HeMix |
+| Unified Interaction after Sequence and Non-sequence Tokenization | First pool or aggregate the behavior sequence into compact sequence representations, then tokenize these representations together with non-sequential features for interaction. | HiFormer, RankMixer, Zenith, UniMixer, HeMix |
 | Layer-wise Unified Interaction | Keep sequence tokens and non-sequence tokens inside the interaction layers, allowing behavior tokens, field tokens, and target tokens to exchange information throughout the network. | OneTrans, HyFormer, MixFormer, INFNet, EST, SORT, TokenFormer, LONGER, UltraHSTU |
 
 Design choices in this repository are intentionally practical:
